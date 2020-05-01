@@ -8,18 +8,28 @@ import { ProductListsComponent } from './components/product-lists/product-lists.
 import { HttpClientModule } from "@angular/common/http";
 import { ProductService } from './services/product.service';
 import {MatCardModule} from '@angular/material/card';
+import { MenuComponent } from './components/menu/menu.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+// import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListsComponent
+    ProductListsComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    NgModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
