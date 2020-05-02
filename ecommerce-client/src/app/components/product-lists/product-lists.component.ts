@@ -8,6 +8,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListsComponent implements OnInit {
 
+  products:[];
+
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
@@ -21,19 +23,19 @@ export class ProductListsComponent implements OnInit {
     
 
     this.productService.getProductList().subscribe(data=>{
-      // console.log("hello");
-      // console.log("hello");
-      // console.log( data);
+      
+      let products = JSON.parse(data);
+      this.products = products;
     })
 
 
-    this.productService.returnObservable().subscribe(
-      data => {
-        console.log("data");
-        console.log(data);
-        // this.products = data;
-      }
-    );
+    // this.productService.returnObservable().subscribe(
+    //   data => {
+    //     console.log("data");
+    //     console.log(data);
+    //     // this.products = data;
+    //   }
+    // );
 
   }
 

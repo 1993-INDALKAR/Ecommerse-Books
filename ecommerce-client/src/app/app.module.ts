@@ -9,11 +9,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductListsComponent } from './components/product-lists/product-lists.component';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from "@angular/common/http";
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListsComponent
+    ProductListsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

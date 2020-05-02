@@ -1,1 +1,20 @@
-<p>product-lists works!</p>
+<div class="row">
+
+    <div class="card mb-3 col-lg-2 mx-2" style="max-width: 540px;" *ngFor="let product of products">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src]="product['imageUrl']" class="card-img" (alt)="product['name']">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product['name']}}</h5>
+              <p class="card-text">In Stock : {{product['unitsInStock']}}</p>
+              <p class="card-text">Price : {{product['unitPrice']}}</p>
+              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+

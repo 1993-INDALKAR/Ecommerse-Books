@@ -53,7 +53,7 @@ public class ProductRepository implements ProductDao {
 		String sku = products.get(i).getSku();
 		product.setSku(products.get(i).getSku());
 		product.setName((String)products.get(i).getName());
-		product.setImageUrl((String)products.get(i).getImageUrl());
+		product.setImageUrl("../../"+(String)products.get(i).getImageUrl());
 //		System.out.println("Category" + products.get(i).getCategory());
 		product.setDateCreated((Date)products.get(i).getDateCreated());
 		product.setLastUpdated((Date)products.get(i).getLastUpdated());
