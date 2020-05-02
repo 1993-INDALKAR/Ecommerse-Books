@@ -25,6 +25,7 @@ public class ProductRestController {
 	@GetMapping("/products")
 	@CrossOrigin("http://localhost:4200")
 	public List<Product> getAllProducts(){
+//		public Product[] getAllProducts(){
 		System.out.println("products");
 		return this.productServie.getAllProducts();
 	}

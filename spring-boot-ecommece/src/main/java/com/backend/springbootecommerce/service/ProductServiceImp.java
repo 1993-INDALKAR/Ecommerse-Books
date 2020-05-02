@@ -29,10 +29,13 @@ public class ProductServiceImp implements ProductService {
 	@Override
 	@Transactional
 	public List<Product> getAllProducts() {
+//		public Product[] getAllProducts() {
 		// TODO Auto-generated method stub
 
 		List<Product> products = productDao.getAllProducts();
-		
+//		Product[] products = productDao.getAllProducts();
+		System.out.println("products");
+		System.out.println(products);
 		return products;
 		
 	}

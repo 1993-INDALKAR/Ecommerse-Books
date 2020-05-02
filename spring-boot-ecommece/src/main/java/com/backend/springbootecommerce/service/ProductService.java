@@ -7,5 +7,6 @@ import com.backend.springbootecommece.entity.Product;
 public interface ProductService {
 	
 	public List<Product> getAllProducts();
+//	public Product[] getAllProducts();
 
 }
