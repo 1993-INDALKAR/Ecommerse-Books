@@ -3,35 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductListsComponent } from './components/product-lists/product-lists.component';
-import { HttpClientModule } from "@angular/common/http";
-import { ProductService } from './services/product.service';
-import {MatCardModule} from '@angular/material/card';
-import { MenuComponent } from './components/menu/menu.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { MatSliderModule } from '@angular/material/slider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-// import { NgModule } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductListsComponent } from './components/product-lists/product-lists.component';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListsComponent,
-    MenuComponent
+    ProductListsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatCardModule,
     MatSidenavModule,
-    MatSliderModule,
-    MatCheckboxModule,
-    NgModule
+    NoopAnimationsModule,
+    FontAwesomeModule,
+    HttpClientModule
+    // AngularFontAwesomeModule
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

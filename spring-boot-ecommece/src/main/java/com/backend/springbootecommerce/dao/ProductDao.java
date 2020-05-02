@@ -1,0 +1,11 @@
+package com.backend.springbootecommerce.dao;
+
+import java.util.List;
+
+import com.backend.springbootecommece.entity.Product;
+
+public interface ProductDao {
+	
+	public List<Product> getAllProducts();
+
+}
