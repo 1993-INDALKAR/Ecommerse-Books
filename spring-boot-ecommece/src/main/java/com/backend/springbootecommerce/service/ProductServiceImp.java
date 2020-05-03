@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.springbootecommece.entity.Product;
+import com.backend.springbootecommece.entity.ProductCategory;
 import com.backend.springbootecommerce.dao.ProductRepository;
 
 @Service
@@ -39,5 +40,9 @@ public class ProductServiceImp implements ProductService {
 		return products;
 		
 	}
+
+
+
+
 
 }

@@ -10,12 +10,15 @@ import { ProductListsComponent } from './components/product-lists/product-lists.
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
+import {RouterModule} from '@angular/router';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListsComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatSidenavModule,
     NoopAnimationsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
     // AngularFontAwesomeModule
   ],
   providers: [],
