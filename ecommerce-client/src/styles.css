@@ -8213,6 +8213,7 @@
   #sidebar {
     min-width: 270px;
     max-width: 270px;
+    height: 100%;
     background: #3445b4;
     color: #fff;
     -webkit-transition: all 0.3s;

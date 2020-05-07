@@ -19,7 +19,7 @@ export class ProductCategoryService {
   }
 
   getProdListByCategory(id:Number){
-    this._http.get(this.url+`/${id}`,{responseType: 'text'});
+    return this._http.get(this.url+`/${id}`,{responseType: 'text'});
   }
 
 }

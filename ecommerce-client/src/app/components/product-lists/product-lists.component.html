@@ -1,7 +1,11 @@
-<div class="row">
 
-    <div class="card mb-3 col-lg-2 mx-2" style="max-width: 540px;" *ngFor="let product of products">
-        <div class="row no-gutters">
+<div class="container-fluid">
+
+
+  <div class="row">
+
+    <div class="col-md-3" style="max-width: 540px;" *ngFor="let product of products; let i = index; trackBy: trackByFn" [attr.data-index]="i">
+        <div class="row no-gutters" id="{{i}}">
           <div class="col-md-4">
             <img [src]="product['imageUrl']" class="card-img" (alt)="product['name']">
           </div>
@@ -10,7 +14,6 @@
               <h5 class="card-title">{{product['name']}}</h5>
               <p class="card-text">In Stock : {{product['unitsInStock']}}</p>
               <p class="card-text">Price : {{product['unitPrice']}}</p>
-              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             </div>
           </div>
         </div>
@@ -18,3 +21,10 @@
 
 </div>
 
+
+
+
+</div>
+ 
+
+ 
