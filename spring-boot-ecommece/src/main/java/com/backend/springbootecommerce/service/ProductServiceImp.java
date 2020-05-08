@@ -43,6 +43,15 @@ public class ProductServiceImp implements ProductService {
 
 
 
+	@Override
+	@Transactional
+	public List<Product> searchProducts(String prodName) {
+		// TODO Auto-generated method stub
+		return productDao.searchProducts(prodName);
+	}
+
+
+
 
 
 }

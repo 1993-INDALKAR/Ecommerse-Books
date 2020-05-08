@@ -10,6 +10,6 @@ public interface ProductService {
 	public List<Product> getAllProducts();
 //	public Product[] getAllProducts();
 	
-	
+	public List<Product> searchProducts(String prodName);
 
 }

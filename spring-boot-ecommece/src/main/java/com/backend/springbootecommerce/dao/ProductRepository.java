@@ -60,4 +60,18 @@ public class ProductRepository implements ProductDao {
 		
 	}
 
+
+	@Override
+	public List<Product> searchProducts(String prodName) {
+		// TODO Auto-generated method stub
+		System.out.println(prodName);
+		Query query = entityManager.createQuery("from Product p where p.name LIKE '%" + prodName +"%'");
+//				+ "CONCAT('%', :prodName , '%')");
+		
+		List<Product> products = query.getResultList();
+		System.out.println(products);
+		
+		return products;
+	}
+
 }
