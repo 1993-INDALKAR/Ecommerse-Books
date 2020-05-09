@@ -20,12 +20,25 @@ export class ProductListsComponent implements OnInit {
 
     this.sub = this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
-      console.log(id);
-      this.getProducts(id);
-      // this.service.get(term).then(result => { console.log(result); });
+      const keyword = params['keyword'];
+      console.log("keyword: "+keyword);
+      if(keyword != undefined){
+        this.getSearchProducts(keyword);
+      }
+      else{
+        this.getProducts(id);
+      }
+      // console.log(id);
+      
     });
     
 
+  }
+
+  getSearchProducts(keyword:String){
+    this.productService.getSearchResults(keyword).subscribe(data=>{
+      this.products = JSON.parse(data);
+    })
   }
 
 
@@ -48,7 +61,7 @@ export class ProductListsComponent implements OnInit {
 
       // let products = JSON.parse(data);
       this.products = JSON.parse(data);
-      console.log(this.products);
+      // console.log(this.products);
     })
 
   }

@@ -19,6 +19,14 @@ export class ProductService {
 
   }
 
+  getSearchResults(name:String){
+    return this._http.get(`${this.baseUrl}/search/${name}`,{responseType: 'text'});
+  }
+
+  getProductDetail(id:Number){
+    return this._http.get(`${this.baseUrl}/${id}`,{responseType: 'text'});
+  }
+
 }
 
 

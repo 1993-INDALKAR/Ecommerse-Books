@@ -11,5 +11,7 @@ public interface ProductService {
 //	public Product[] getAllProducts();
 	
 	public List<Product> searchProducts(String prodName);
+	
+	public Product getProductDetails(int id);
 
 }

@@ -52,6 +52,14 @@ public class ProductServiceImp implements ProductService {
 
 
 
+	@Override
+	public Product getProductDetails(int id) {
+		// TODO Auto-generated method stub
+		return productDao.getProductDetails(id);
+	}
+
+
+
 
 
 }

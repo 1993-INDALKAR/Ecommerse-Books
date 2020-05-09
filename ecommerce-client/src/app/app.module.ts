@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +13,19 @@ import { HttpClientModule } from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
 import {RouterModule} from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+// import { NgxImageZoomModule } from 'ngx-image-zoom'
+// import {ImageZoomModule} from 'ng2-image-hover-zoom';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListsComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchBarComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NoopAnimationsModule,
     FontAwesomeModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    // ImageZoomModule
     // AngularFontAwesomeModule
   ],
   providers: [],

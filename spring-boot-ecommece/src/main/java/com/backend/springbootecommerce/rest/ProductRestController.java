@@ -23,7 +23,7 @@ public class ProductRestController {
 		this.productServie = productServie;
 	}
 	
-	@GetMapping("/search/{prodName}")
+	@GetMapping("/products/search/{prodName}")
 	@CrossOrigin("http://localhost:4200")
 	public List<Product> searchProducts(@PathVariable String prodName){
 		
@@ -36,6 +36,13 @@ public class ProductRestController {
 //		public Product[] getAllProducts(){
 		System.out.println("products");
 		return this.productServie.getAllProducts();
+	}
+	
+	@GetMapping("/products/{id}")
+	@CrossOrigin("http://localhost:4200")
+	public Product getProductDetail(@PathVariable int id) {
+		
+		return this.productServie.getProductDetails(id);
 	}
 	
 	

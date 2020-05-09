@@ -74,4 +74,14 @@ public class ProductRepository implements ProductDao {
 		return products;
 	}
 
+
+	@Override
+	public Product getProductDetails(int id) {
+		// TODO Auto-generated method stub
+		System.out.println(id);
+		Product query = entityManager.find(Product.class, (long)id);
+		System.out.println(query);
+		return query;
+	}
+
 }
