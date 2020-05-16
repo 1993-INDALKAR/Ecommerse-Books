@@ -1,11 +1,11 @@
-
 <div class="container-fluid">
 
 
   <div class="row">
 
-    <div class="col-md-3" style="max-width: 540px;" *ngFor="let product of products; let i = index; trackBy: trackByFn" [attr.data-index]="i">
-      <a [routerLink] = "['/product-details', product['id']]"  queryParamsHandling="merge">
+    <div class="col-md-3" style="max-width: 540px;" *ngFor="let product of products; let i = index; trackBy: trackByFn"
+      [attr.data-index]="i">
+      <a [routerLink]="['/product-details', product['id']]" queryParamsHandling="merge">
         <div class="row no-gutters" id="{{i}}">
           <div class="col-md-4">
             <img [src]="product['imageUrl']" class="card-img" (alt)="product['name']">
@@ -18,16 +18,35 @@
             </div>
           </div>
         </div>
-      </a>  
-      
-      </div>
+      </a>
+
+      <button type="button" class="btn btn-primary mt-2 mb-5" (click)="addToCart(product)"
+        *ngIf="cartItemsId == undefined || cartItemsId.indexOf(product['id']) == -1;else addedToCart">
+        <svg class="bi bi-plus-circle" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z"
+            clip-rule="evenodd" />
+          <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z"
+            clip-rule="evenodd" />
+          <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+            clip-rule="evenodd" />
+        </svg>
+        <strong class="ml-3 mr-2">Add to Cart</strong>
+      </button>
+
+      <ng-template #addedToCart>
+        <strong><i>Added To Cart</i></strong>
+      </ng-template>
+
+    </div>
+
+  </div>
+
+  <div>
+    <app-paginator (paginatorListChange)="paginatorListChange($event[0],$event[1])" [length]="length"
+      [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"></app-paginator>
+  </div>
+
+
 
 </div>
-
-
-
-
-</div>
- 
-
- 

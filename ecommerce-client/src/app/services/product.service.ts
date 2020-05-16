@@ -10,6 +10,13 @@ import { map } from 'rxjs/operators';
 export class ProductService {
 
   private baseUrl = 'http://localhost:8180/api/products';
+  private allProducts = [];
+  private allProdPagination = {
+    length : 100,
+    pageSize: 20,
+    pageSizeOptions : [10, 20, 100]
+  }
+  
 
   constructor(private _http: HttpClient) { }
 
@@ -19,6 +26,13 @@ export class ProductService {
 
   }
 
+  getAllProducts(){
+    return this.allProducts;
+  }
+  setAllProducts(allProducts){
+    this.allProducts = allProducts;
+  }
+
   getSearchResults(name:String){
     return this._http.get(`${this.baseUrl}/search/${name}`,{responseType: 'text'});
   }
@@ -26,6 +40,14 @@ export class ProductService {
   getProductDetail(id:Number){
     return this._http.get(`${this.baseUrl}/${id}`,{responseType: 'text'});
   }
+
+  getAllProdPagination(){
+    return this.allProdPagination;
+  }
+
+
+
+
 
 }
 

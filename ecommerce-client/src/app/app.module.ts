@@ -11,12 +11,16 @@ import { ProductListsComponent } from './components/product-lists/product-lists.
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
-import {RouterModule} from '@angular/router';
+// import {RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-// import { NgxImageZoomModule } from 'ngx-image-zoom'
-// import {ImageZoomModule} from 'ng2-image-hover-zoom';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBadgeModule} from '@angular/material/badge';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     HeaderComponent,
     SidebarComponent,
     SearchBarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PaginatorComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     HttpClientModule,
     RouterModule,
     FormsModule,
+    MatPaginatorModule,
+    MatBadgeModule,
+    MatButtonModule
     // ImageZoomModule
     // AngularFontAwesomeModule
   ],
