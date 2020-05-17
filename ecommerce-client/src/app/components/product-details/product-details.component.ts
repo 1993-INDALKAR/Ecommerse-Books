@@ -50,7 +50,7 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(product:{}){
     // console.log(product);
     this.shoppingCart.setItemsToCart(product);
-    this.shoppingCart.getCartItemCount();
+    this.shoppingCart.getCartItemCount(this.shoppingCart.getItemsFromCart().length);
 
   }
 
