@@ -17,4 +17,9 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.cartItems);
   }
 
+  removeItemFromCart(item:Object){
+    console.log(item);
+    this.shoppingCart.removeItem(item);
+  }
+
 }

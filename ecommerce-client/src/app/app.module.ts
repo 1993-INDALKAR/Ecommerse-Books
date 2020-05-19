@@ -21,6 +21,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import {SocketioService} from "./services/socketio.service";
+import {MatMenuModule} from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -44,11 +47,12 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     FormsModule,
     MatPaginatorModule,
     MatBadgeModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
     // ImageZoomModule
     // AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [SocketioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

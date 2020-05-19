@@ -130,7 +130,7 @@ export class ProductListsComponent implements OnInit {
 
   addToCart(product:{}){
     this.shoppingCart.setItemsToCart(product);
-    this.shoppingCart.getCartItemCount();
+    this.shoppingCart.getCartItemCount(this.shoppingCart.getItemsFromCart().length);
   }
 
 
