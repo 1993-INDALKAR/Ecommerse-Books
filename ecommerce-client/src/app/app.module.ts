@@ -23,7 +23,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import {SocketioService} from "./services/socketio.service";
 import {MatMenuModule} from '@angular/material/menu';
-
+import { PaypalComponent } from './components/paypal/paypal.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatMenuModule} from '@angular/material/menu';
     SearchBarComponent,
     ProductDetailsComponent,
     PaginatorComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    PaypalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatPaginatorModule,
     MatBadgeModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxPayPalModule
     // ImageZoomModule
     // AngularFontAwesomeModule
   ],

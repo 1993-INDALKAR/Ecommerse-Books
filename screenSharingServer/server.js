@@ -28,6 +28,16 @@ function newConnection(socket){
 
     }
 
+    socket.on('clicking',clickMessage);
+
+    function clickMessage(data){
+        console.log(data);
+        socket.broadcast.emit('clicking',data);
+
+    }
+
+
+
 
 //     socket.on('disconnect')
 

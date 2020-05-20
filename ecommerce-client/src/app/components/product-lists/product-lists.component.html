@@ -3,9 +3,9 @@
 
   <div class="row">
 
-    <div class="col-md-3" style="max-width: 540px;" *ngFor="let product of products; let i = index; trackBy: trackByFn"
+    <div class="col-md-3" style="max-width: 540px;" *ngFor="let product of products; let i = index; trackBy: trackByFn" 
       [attr.data-index]="i">
-      <a [routerLink]="['/product-details', product['id']]" queryParamsHandling="merge">
+      
         <div class="row no-gutters" id="{{i}}">
           <div class="col-md-4">
             <img [src]="product['imageUrl']" class="card-img" (alt)="product['name']">
@@ -17,10 +17,12 @@
               <p class="card-text">Price : {{product['unitPrice']}}</p>
             </div>
           </div>
+          <a [routerLink]="['/product-details', product['id']]" queryParamsHandling="merge" id=`list-{{i}}`>See more...</a>
         </div>
-      </a>
+      <!-- </a> -->
 
-      <button type="button" class="btn btn-primary mt-2 mb-5" (click)="addToCart(product)"
+
+        <button type="button" class="btn btn-primary mt-2 mb-5" (click)="addToCart(product)"  id=`addCart-{{i}}`
         *ngIf="cartItemsId == undefined || cartItemsId.indexOf(product['id']) == -1;else addedToCart">
         <svg class="bi bi-plus-circle" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
           xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +33,10 @@
           <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
             clip-rule="evenodd" />
         </svg>
-        <strong class="ml-3 mr-2">Add to Cart</strong>
+        <strong class="ml-3 mr-2" >Add to Cart</strong>
       </button>
+
+      
 
       <ng-template #addedToCart>
         <strong><i>Added To Cart</i></strong>
