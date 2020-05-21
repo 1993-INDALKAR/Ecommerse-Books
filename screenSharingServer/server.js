@@ -23,7 +23,7 @@ function newConnection(socket){
     socket.on('mouse',mouseMessage);
 
     function mouseMessage(data){
-        console.log(data);
+        // console.log(data);
         socket.broadcast.emit('mouse',data);
 
     }
@@ -32,7 +32,9 @@ function newConnection(socket){
 
     function clickMessage(data){
         console.log(data);
-        socket.broadcast.emit('clicking',data);
+        // socket.broadcast.emit('clicking',data);
+        io.sockets.emit('clicking',data);
+        // data = {};
 
     }
 

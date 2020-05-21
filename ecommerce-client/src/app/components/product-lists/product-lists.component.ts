@@ -46,7 +46,7 @@ export class ProductListsComponent implements OnInit {
     // this.shoppingCart.cartItemsID.subscribe(item =>{
     //   console.log(item);
     // } );
-    console.log( this.cartItemsId);
+    // console.log( this.cartItemsId);
 
   }
 
