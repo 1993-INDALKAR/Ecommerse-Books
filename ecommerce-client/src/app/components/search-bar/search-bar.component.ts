@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { ProductService } from "../../services/product.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -8,18 +9,27 @@ import {Router} from '@angular/router';
 })
 export class SearchBarComponent implements OnInit {
 
-  public value:String;
+  public value: String;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private productService: ProductService) {
+
+    this.value = "";
+  }
 
   ngOnInit(): void {
   }
 
-  onSearchSubmit(){
+  onSearchSubmit() {
 
-    if(this.value.length != 0){
+    if (this.value.length != 0) {
+      // this.productService.setsearchProduct(this.value,"search-input-id");
       this.router.navigateByUrl(`/searchProduct/${this.value}`);
     }
+  }
+
+  setSearchValue(){
+    console.log(this.value);
+    this.productService.setsearchProduct(this.value,"search-input-id");
   }
 
 }

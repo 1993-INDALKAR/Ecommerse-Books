@@ -12,6 +12,7 @@ export class ShoppingCartService {
   // public cartItemsID = new BehaviorSubject(null);
   // currentcartItemsID = this.cartItemsID.asObservable();
   public cartItemsID: any = []
+  totalPrice:number=0.0;
 
   constructor() { }
 
@@ -47,6 +48,14 @@ export class ShoppingCartService {
   removeCartItemsID(id: number) {
     const index = this.cartItemsID.indexOf(id);
     this.cartItemsID.splice(index, 1);
+  }
+
+  setTotalPrice(price:number){
+    this.totalPrice = price;
+  }
+
+  getTotalPrice(){
+    return this.totalPrice;
   }
 
 }

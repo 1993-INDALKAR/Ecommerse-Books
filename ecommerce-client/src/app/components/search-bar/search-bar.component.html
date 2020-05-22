@@ -1,3 +1,11 @@
+<!-- <div class="col-lg-12">
+    <input class="form-control mr-sm-2 "  placeholder="Search" [(ngModel)]="value" aria-label="Search" id="search-input-id">
+    <button class="btn btn-outline-success mx-2 my-2 my-sm-0 " (click)="onSearchSubmit()" id="searchId">Search</button>
 
-    <input class="form-control mr-sm-2 col-lg-8"  placeholder="Search" [(ngModel)]="value" aria-label="Search" id="search-input-id">
-    <button class="btn btn-outline-success mx-2 my-2 my-sm-0 col-lg-2" (click)="onSearchSubmit()" id="searchId">Search</button>
+</div> -->
+
+
+<form class="form-inline my-2 my-lg-0" (ngSubmit)="onSearchSubmit()" #heroForm="ngForm">
+    <input class="form-control mr-sm-2" (change)="setSearchValue()" type="search" [(ngModel)]="value" name="search" placeholder="Search" id="search-input-id" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  id="searchId">Search</button>
+  </form>

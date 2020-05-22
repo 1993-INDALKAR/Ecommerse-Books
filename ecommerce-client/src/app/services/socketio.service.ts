@@ -6,7 +6,7 @@ import { fromEvent, empty, isObservable, of } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { exhaustMap, tap, take, finalize, shareReplay, map, debounceTime, pairwise } from 'rxjs/operators/';
 // import { pairwise } from 'rxjs/operators';
-
+import { ProductService } from "./product.service";
 // import 'rxjs/add/observable/fromEvent';
 
 export type ButtonHandler = (e?: MouseEvent) => Observable<unknown> | Promise<unknown>;
@@ -25,7 +25,7 @@ export class SocketioService {
   subs: any;
   @ViewChild('input', { static: true }) button: ElementRef;
 
-  constructor() {
+  constructor(private productService: ProductService) {
 
     this.setUpSocketConnection();
 
@@ -65,6 +65,11 @@ export class SocketioService {
         this.clickEvent = {
           "id": e.target['id']
           // "id" : e.target['id']
+        }
+
+        if (e.target['id'] == "searchId") {
+          console.log(this.productService.getSearchProduct());
+          this.clickEvent['searchInputData'] = this.productService.getSearchProduct();
         }
 
         this.socket.emit('clicking', this.clickEvent);
@@ -114,15 +119,30 @@ export class SocketioService {
   newMouseClick(data) {
     // console.log("returned click");
     // console.log(data['id']);
-    console.log("previous:" + this.previousData);
-    console.log("current:" + data['id']);
+    // console.log("previous:" + this.previousData);
+    // console.log("current:" + data['id']);
     if (this.previousData != data['id']) {
       this.previousData = data['id'];
-      let element: HTMLElement = document.getElementById(data['id']) as HTMLElement;
+
+      if (data['id'] == 'searchId') {
+        console.log(data);
+        let inputElement = (<HTMLInputElement>document.getElementById(data['searchInputData']['id']))
+        inputElement.value = data['searchInputData']['name'];
+        // inputElement.onkeypress(ev);
+        inputElement.dispatchEvent(new Event("input"))
+        // var ev = document.createEvent('KeyboardEvent');
+        //  ev.initEvent('keypress');
+        //  ev.keyCode = 13;
+        //  inputElement.dispatchEvent(ev);
+        // let inputElement: HTMLElement = document.getElementById(data['searchInputData']['id']) as HTMLElement;
+        // inputElement.nodeValue = data['searchInputData']['name'];
+      }
+      console.log(this.previousData);
+      let element: HTMLElement = document.getElementById(this.previousData) as HTMLElement;
       // console.log(element);
       element.click();
-      data = {};
-      
+      // data = {};
+
     }
 
     // this.subs.unsubscribe(); 

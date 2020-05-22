@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light row">
   <div class="col-lg-4">
-    <a class="navbar-brand" [routerLink]="'/products/'">Angular E-Com</a>
+    <a class="navbar-brand" [routerLink]="'/products/'" id="home-id">Angular E-Com</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,15 +8,9 @@
   </div>
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent col-lg-8">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent ">
     <app-search-bar></app-search-bar>
-    <div>
-      <div class="divCart" [matBadge]="items" matBadgePosition="after" (click)="routeToCart()">
-        <fa-icon [icon]="faCartPlus" transform="grow-20"></fa-icon>
-      </div>
-
-      <!-- </mat-icon> -->
-    </div>
+    
 
     <!-- <div>
       <button mat-button [matMenuTriggerFor]="menu">Sign In</button>
@@ -26,4 +20,9 @@
     </div> -->
 
   </div>
+
+    <div class="divCart mr-3"  [matBadge]="items" matBadgePosition="after" (click)="routeToCart()">
+      <fa-icon [icon]="faCartPlus" id="cart-id" transform="grow-20"></fa-icon>
+    </div>
+    
 </nav>

@@ -12,39 +12,51 @@ export class ProductService {
   private baseUrl = 'http://localhost:8180/api/products';
   private allProducts = [];
   private allProdPagination = {
-    length : 100,
+    length: 100,
     pageSize: 20,
-    pageSizeOptions : [10, 20, 100]
+    pageSizeOptions: [10, 20, 100]
   }
-  
+  searchProduct: Object = {};
+
 
   constructor(private _http: HttpClient) { }
 
-  getProductList(){
+  getProductList() {
 
-    return this._http.get(this.baseUrl,{responseType: 'text'});
+    return this._http.get(this.baseUrl, { responseType: 'text' });
 
   }
 
-  getAllProducts(){
+  getAllProducts() {
     return this.allProducts;
   }
-  setAllProducts(allProducts){
+  setAllProducts(allProducts) {
     this.allProducts = allProducts;
   }
 
-  getSearchResults(name:String){
-    return this._http.get(`${this.baseUrl}/search/${name}`,{responseType: 'text'});
+  getSearchResults(name: String) {
+    return this._http.get(`${this.baseUrl}/search/${name}`, { responseType: 'text' });
   }
 
-  getProductDetail(id:Number){
-    return this._http.get(`${this.baseUrl}/${id}`,{responseType: 'text'});
+  getProductDetail(id: Number) {
+    return this._http.get(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
-  getAllProdPagination(){
+  getAllProdPagination() {
     return this.allProdPagination;
   }
 
+  setsearchProduct(product, id) {
+    this.searchProduct = {
+      "name": product,
+      "id": id
+    };
+    console.log(this.searchProduct);
+  }
+
+  getSearchProduct() {
+    return this.searchProduct;
+  }
 
 
 
