@@ -1,0 +1,23 @@
+<div class="formGroup" *ngIf="user.hasOwnProperty('email') == false; else userLoggedIn" class="mr-3">
+   <button type="button" class="btn btn-primary" (click)="authService.FacebookAuth()">
+      <!-- <button type="button" > -->
+      Log in with Facebook
+   </button>
+</div>
+
+
+<ng-template #userLoggedIn>
+   <div class="mr-3">
+      <button mat-button [matMenuTriggerFor]="menu">
+         <ngx-avatar [facebookId]="user['userId']" [gravatarId]="user['userId']" [name]="user['name']" [round]="true"
+            [src]="user['image']">
+         </ngx-avatar>
+         <h3 class="ml-1">{{user['name']}}</h3>
+      </button>
+      <mat-menu #menu="matMenu">
+         <button mat-menu-item (click)="startConnection()">Start Screening</button>
+      </mat-menu>
+   </div>
+
+
+</ng-template>

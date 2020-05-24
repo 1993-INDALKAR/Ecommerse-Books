@@ -31,13 +31,7 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['cart']);
   }
 
-  startConnection(){
-    console.log("calling socket server");
-    this.socketService.setUpSocketConnection();
-  }
+ 
 
-  // addItemCount(){
-  //   console.log("counting item");
-  // }
 
 }

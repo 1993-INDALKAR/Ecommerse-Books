@@ -30,6 +30,16 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 // import { ChatModule } from '@progress/kendo-angular-conversational-ui';
 import { BottomSheetOverviewExampleSheet } from "./bottom-sheet-overview-example-sheet.component";
+import { SigninComponent } from './components/signin/signin.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import * as firebase from 'firebase/app';
+import { AvatarModule } from 'ngx-avatar';
+
+firebase.initializeApp(environment.firebaseConfig);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +51,8 @@ import { BottomSheetOverviewExampleSheet } from "./bottom-sheet-overview-example
     PaginatorComponent,
     ShoppingCartComponent,
     PaypalComponent,
-    BottomSheetOverviewExampleSheet
+    BottomSheetOverviewExampleSheet,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +72,11 @@ import { BottomSheetOverviewExampleSheet } from "./bottom-sheet-overview-example
     MatBottomSheetModule,
     MatDialogModule,
     // ChatModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AvatarModule
     // ImageZoomModule
     // AngularFontAwesomeModule
   ],

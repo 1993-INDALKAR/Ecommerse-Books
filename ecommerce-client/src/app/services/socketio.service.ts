@@ -38,7 +38,7 @@ export class SocketioService {
 
   constructor(private productService: ProductService) {
 
-    this.setUpSocketConnection();
+    // this.setUpSocketConnection();
 
   }
 
@@ -113,7 +113,7 @@ export class SocketioService {
     //   this.messages.next(updatedValue);
     // }
 
-    this.messages.next(this.messages.value.push(data));
+    // this.messages.next(this.messages.value.push(data));
 
   }
 
@@ -152,8 +152,8 @@ export class SocketioService {
   }
 
   public sendMessage(message) {
-    console.log(message)
-      ; this.socket.emit('new-message', message);
+    // console.log(message)
+    this.socket.emit('new-message', message);
   }
 
   public getMessages = () => {

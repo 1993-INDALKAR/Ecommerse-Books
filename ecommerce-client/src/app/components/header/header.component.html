@@ -12,14 +12,11 @@
     <app-search-bar></app-search-bar>
     
 
-    <div>
-      <button mat-button [matMenuTriggerFor]="menu">Sign In</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="startConnection()">Start Screening</button>
-      </mat-menu>
-    </div>
+    
 
   </div>
+
+  <app-signin></app-signin>
 
     <div class="divCart mr-3"  [matBadge]="items" matBadgePosition="after" (click)="routeToCart()">
       <fa-icon [icon]="faCartPlus" id="cart-id" transform="grow-20"></fa-icon>
