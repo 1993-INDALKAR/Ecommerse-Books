@@ -8,6 +8,7 @@ import { exhaustMap, tap, take, finalize, shareReplay, map, debounceTime, pairwi
 // import { pairwise } from 'rxjs/operators';
 import { ProductService } from "./product.service";
 // import 'rxjs/add/observable/fromEvent';
+import { BehaviorSubject } from 'rxjs/';
 
 export type ButtonHandler = (e?: MouseEvent) => Observable<unknown> | Promise<unknown>;
 const defaultHandler: ButtonHandler = (e) => empty();
@@ -18,12 +19,22 @@ const defaultHandler: ButtonHandler = (e) => empty();
 })
 export class SocketioService {
 
-  socket;
+  private socket;
   data = {};
   previousData: any = {}
   clickEvent: any;
   subs: any;
+  // private socket;
   @ViewChild('input', { static: true }) button: ElementRef;
+
+
+
+  // private messages = new BehaviorSubject(new Array<String>());
+  //  messages: BehaviorSubject<Array<any>> = new BehaviorSubject([]);
+  messages = new BehaviorSubject<any[]>([]);
+  //  messages: BehaviorSubject<String[]> = new BehaviorSubject<String[]>(null);
+  private allMessages: [];
+  currentMessage = this.messages.asObservable();
 
   constructor(private productService: ProductService) {
 
@@ -72,7 +83,8 @@ export class SocketioService {
           this.clickEvent['searchInputData'] = this.productService.getSearchProduct();
         }
 
-        this.socket.emit('clicking', this.clickEvent);
+        if (e.target['id'] != 'message-btn-id')
+          this.socket.emit('clicking', this.clickEvent);
 
       });
 
@@ -87,33 +99,23 @@ export class SocketioService {
     this.socket.on('clicking', this.newMouseClick);
 
 
+    // this.socket.on('new-message', this.newMessage);
+
   }
 
-  // private wrapHandlerInObservable(e: MouseEvent) {
-  //   this._processing = true;
-  //   const handleResult = this.handler(e);
-  //   let obs: Observable<unknown>;
-  //   if (isObservable(handleResult)) {
-  //     obs = handleResult;
-  //   } else {
-  //     obs = of(handleResult);
-  //   }
-  //   return obs.pipe(take(1), finalize(() => this._processing = false));
-  // }
+  newMessage(data) {
+    // if (this.messages == undefined) {
+    //   this.messages.next([...data]);
+    // }
+    // else {
+    //   const currentValue = this.messages.value;
+    //   const updatedValue = [...currentValue, data];
+    //   this.messages.next(updatedValue);
+    // }
 
-  // newMouseMove() {
-  // console.log(this.data);
-  // fromEvent(document.body, 'mousemove').subscribe((e: MouseEvent) => {
-  //   console.log(this.data);
-  //   return {
-  //     x: this.data['x'],
-  //     y: this.data['y']
-  //   }
+    this.messages.next(this.messages.value.push(data));
 
-
-  // });
-
-  // }
+  }
 
 
   newMouseClick(data) {
@@ -147,6 +149,19 @@ export class SocketioService {
 
     // this.subs.unsubscribe(); 
 
+  }
+
+  public sendMessage(message) {
+    console.log(message)
+      ; this.socket.emit('new-message', message);
+  }
+
+  public getMessages = () => {
+    return Observable.create((observer) => {
+      this.socket.on('new-message', (message) => {
+        observer.next(message);
+      });
+    });
   }
 
 }

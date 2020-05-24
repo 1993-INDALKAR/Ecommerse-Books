@@ -4,8 +4,22 @@
 
 export const environment = {
   production: false,
-  SOCKET_ENDPOINT: 'http://localhost:3000'
+  SOCKET_ENDPOINT: 'http://localhost:3000',
+  firebaseConfig: {
+    apiKey: "AIzaSyD6xpxCoFdasfVCzh_xeRAyI0klyUPpzD8",
+    authDomain: "ecommerce-screen-share.firebaseapp.com",
+    databaseURL: "https://ecommerce-screen-share.firebaseio.com",
+    projectId: "ecommerce-screen-share",
+    storageBucket: "ecommerce-screen-share.appspot.com",
+    messagingSenderId: "36979439209",
+    appId: "1:36979439209:web:beda46d33de495b39154f8",
+    measurementId: "G-1SZ8VGJ1Y5"
+  }
 };
+
+
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

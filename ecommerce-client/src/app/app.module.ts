@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductListsComponent } from './components/product-lists/product-lists.component';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -17,15 +17,19 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import {SocketioService} from "./services/socketio.service";
-import {MatMenuModule} from '@angular/material/menu';
+import { SocketioService } from "./services/socketio.service";
+import { MatMenuModule } from '@angular/material/menu';
 import { PaypalComponent } from './components/paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+// import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+import { BottomSheetOverviewExampleSheet } from "./bottom-sheet-overview-example-sheet.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +40,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ProductDetailsComponent,
     PaginatorComponent,
     ShoppingCartComponent,
-    PaypalComponent
+    PaypalComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     BrowserModule,
@@ -51,11 +56,19 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MatBadgeModule,
     MatButtonModule,
     MatMenuModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatIconModule,
+    MatBottomSheetModule,
+    MatDialogModule,
+    // ChatModule,
+    BrowserAnimationsModule
     // ImageZoomModule
     // AngularFontAwesomeModule
   ],
-  providers: [SocketioService],
+  providers: [SocketioService, {
+    provide: MatDialogRef,
+    useValue: {}
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

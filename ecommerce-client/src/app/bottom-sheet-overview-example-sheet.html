@@ -1,0 +1,14 @@
+<h1>Message Area </h1>
+<div>
+    <!-- <h3 *ngFor="let message of messages | async" > -->
+    <h3 *ngFor="let message of messages1 | async">
+        {{message}}
+    </h3>
+</div>
+
+<div>
+    <input [(ngModel)]="message">
+    <button (click)="sendMessage()" id="message-btn-id">Send</button>
+    <button (click)="closeChat()" id="closeChatId">Close Chat</button>
+</div>
+<!-- <input [(ngModel)]="message"  > -->

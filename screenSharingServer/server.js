@@ -38,6 +38,11 @@ function newConnection(socket){
 
     }
 
+    socket.on('new-message', (message) => {
+        console.log(message);
+        io.sockets.emit('new-message',message);
+      });
+
 
 
 
