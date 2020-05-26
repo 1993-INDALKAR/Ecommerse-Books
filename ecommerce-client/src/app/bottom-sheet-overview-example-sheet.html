@@ -7,8 +7,12 @@
 </div>
 
 <div>
-    <input [(ngModel)]="message">
-    <button (click)="sendMessage()" id="message-btn-id">Send</button>
-    <button (click)="closeChat()" id="closeChatId">Close Chat</button>
+    <input type="text" class="form-control" [(ngModel)]="message">
+    <br/>
+    <button class="btn btn-primary mr-3 mt-2" (click)="sendMessage()" id="message-btn-id">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        Send Message
+    </button>
+    <button class="btn btn-danger mt-2 mr-0" (click)="closeChat()" id="closeChatId">Close Chat</button>
 </div>
 <!-- <input [(ngModel)]="message"  > -->

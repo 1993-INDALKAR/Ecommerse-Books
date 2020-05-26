@@ -58,4 +58,10 @@ export class ShoppingCartService {
     return this.totalPrice;
   }
 
+  clearShoppingCart(){
+    this.itemsInCart = [];
+    this.getCartItemCount(0);
+    this.cartItemsID = [];
+  }
+
 }

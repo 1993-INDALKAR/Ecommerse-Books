@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
+import { ShoppingCartService } from "./shopping-cart.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ProductService {
   searchProduct: Object = {};
 
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private shoppingCart: ShoppingCartService) { }
 
   getProductList() {
 
@@ -56,6 +57,12 @@ export class ProductService {
 
   getSearchProduct() {
     return this.searchProduct;
+  }
+
+
+  updateProduct() {
+    var products =
+      this._http.post(`${this.baseUrl}/update/product`);
   }
 
 
