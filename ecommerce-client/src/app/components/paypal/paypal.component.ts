@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 // import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { ProductService } from "../../services/product.service";
 
 declare var paypal;
 declare var Stripe;
@@ -16,12 +17,12 @@ declare var Stripe;
 export class PaypalComponent implements OnInit {
 
   totalPrice: number = 0.0;
-  totalItems:number=0;
+  totalItems: number = 0;
 
-  constructor(private shoppingCart: ShoppingCartService) {
+  constructor(private shoppingCart: ShoppingCartService, private productService: ProductService, private _zone: NgZone) {
 
     this.shoppingCart.currentnoOfItemsCart.subscribe(item => this.totalItems = item);
-   }
+  }
 
 
 
@@ -48,14 +49,23 @@ export class PaypalComponent implements OnInit {
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_cFUkBVJPt74ygjRBuGUk7hvk00D3oFp2YF',
       locale: 'auto',
-      token: function (token: any) {
-        // You can access the token ID with `token.id`.
+      token: async token => {
+        // You can access the token ID with `token.id`. 
         // Get the token ID to your server-side code for use.
-        console.log(token);
-        
+        // let updated = await this.productService.updateProduct();
+        // if (updated) {
+        //   this.shoppingCart.clearShoppingCart();
+        // }
+
+        this._zone.run(async () => {
+          // var updated = this.updateProduct();
+          await this.productService.updateProduct()
+        });
+        // console.log(token);
+
         // alert('Token Created!!');
       }
-    });
+    })
 
     handler.open({
       name: 'Angular E-commerce',
@@ -64,6 +74,10 @@ export class PaypalComponent implements OnInit {
     });
 
   }
+
+  // updateProduct() {
+  //   console.log("update product");
+  // }
 
 
 

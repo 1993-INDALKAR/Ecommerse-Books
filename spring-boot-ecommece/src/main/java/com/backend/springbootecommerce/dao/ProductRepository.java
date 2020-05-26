@@ -64,12 +64,12 @@ public class ProductRepository implements ProductDao {
 	@Override
 	public List<Product> searchProducts(String prodName) {
 		// TODO Auto-generated method stub
-		System.out.println(prodName);
+//		System.out.println(prodName);
 		Query query = entityManager.createQuery("from Product p where p.name LIKE '%" + prodName +"%'");
 //				+ "CONCAT('%', :prodName , '%')");
 		
 		List<Product> products = query.getResultList();
-		System.out.println(products);
+//		System.out.println(products);
 		
 		return products;
 	}
@@ -78,9 +78,9 @@ public class ProductRepository implements ProductDao {
 	@Override
 	public Product getProductDetails(int id) {
 		// TODO Auto-generated method stub
-		System.out.println(id);
+//		System.out.println(id);
 		Product query = entityManager.find(Product.class, (long)id);
-		System.out.println(query);
+//		System.out.println(query);
 		return query;
 	}
 

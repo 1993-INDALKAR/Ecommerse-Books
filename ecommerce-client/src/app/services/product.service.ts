@@ -61,8 +61,10 @@ export class ProductService {
 
 
   updateProduct() {
-    var products =
-      this._http.post(`${this.baseUrl}/update/product`);
+    console.log("Product services update product")
+    var products = this.shoppingCart.getItemsFromCart();
+    console.log(`${this.baseUrl}/update`);
+      return this._http.post(`${this.baseUrl}/update`,products).subscribe();
   }
 
 

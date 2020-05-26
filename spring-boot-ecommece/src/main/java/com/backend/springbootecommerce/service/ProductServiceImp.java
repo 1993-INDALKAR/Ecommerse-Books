@@ -35,8 +35,8 @@ public class ProductServiceImp implements ProductService {
 
 		List<Product> products = productDao.getAllProducts();
 //		Product[] products = productDao.getAllProducts();
-		System.out.println("products");
-		System.out.println(products);
+//		System.out.println("products");
+//		System.out.println(products);
 		return products;
 		
 	}
