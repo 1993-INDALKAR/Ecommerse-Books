@@ -1,5 +1,6 @@
 package com.backend.springbootecommerce.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +54,14 @@ public class ProductRestController {
 	@CrossOrigin("http://localhost:4200")
 	public boolean updateProducts(@RequestBody List<Product> products) {
 		System.out.println("update products");
-		System.out.println(products.toString());
-		return true;
+//		System.out.println(products.get(0).getQuantity());
+//		List<Integer> quantity = new ArrayList<>();
+//		 
+//		for(int i =0;i<products.size();i++) {
+//			quantity.add(products.get(i).getQuantity());
+//		}
+//		int quantity = products.get(0).getQuantity();
+		return this.productServie.updateProductDetails(products);
 	}
 	
 	

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 // import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ProductService } from "../../services/product.service";
+import { Router } from '@angular/router';
 
 declare var paypal;
 declare var Stripe;
@@ -19,7 +20,8 @@ export class PaypalComponent implements OnInit {
   totalPrice: number = 0.0;
   totalItems: number = 0;
 
-  constructor(private shoppingCart: ShoppingCartService, private productService: ProductService, private _zone: NgZone) {
+  constructor(private shoppingCart: ShoppingCartService, private productService: ProductService, private _zone: NgZone,
+    private router: Router) {
 
     this.shoppingCart.currentnoOfItemsCart.subscribe(item => this.totalItems = item);
   }
@@ -59,7 +61,11 @@ export class PaypalComponent implements OnInit {
 
         this._zone.run(async () => {
           // var updated = this.updateProduct();
-          await this.productService.updateProduct()
+          var updated = await this.productService.updateProduct();
+          if (updated) {
+            this.shoppingCart.clearShoppingCart();
+            this.router.navigate(['/orders']);
+          }
         });
         // console.log(token);
 

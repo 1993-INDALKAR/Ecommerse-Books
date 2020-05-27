@@ -15,9 +15,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 @Entity
 @Table(name="product")
@@ -50,6 +53,10 @@ public class Product {
 	@Column(name="units_in_stock")
 	private int unitsInStock;
 	
+//	@JsonIgnore
+//	@JsonProperty(value="quantity")
+//	private int quantity;
+	
 	@Column(name="date_created")
 	@CreationTimestamp
 	private Date dateCreated;
@@ -62,6 +69,16 @@ public class Product {
 //	@JoinColumn(name="category_id",nullable=false)
 	@JoinColumn(name="category_id",nullable=false)
 	private ProductCategory category;
+	
+	
+
+//	public int getQuantity() {
+//		return quantity;
+//	}
+//
+//	public void setQuantity(int quantity) {
+//		this.quantity = quantity;
+//	}
 
 	public Long getId() {
 		return id;

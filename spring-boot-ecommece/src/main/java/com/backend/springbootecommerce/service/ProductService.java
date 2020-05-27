@@ -12,6 +12,8 @@ public interface ProductService {
 	
 	public List<Product> searchProducts(String prodName);
 	
-	public Product getProductDetails(int id);
+	public Product getProductDetails(long id);
+	
+	public boolean updateProductDetails(List<Product> products);
 
 }

@@ -22,6 +22,7 @@ export class ShoppingCartService {
 
   setItemsToCart(item: any) {
     item['quantity'] = 1;
+    // item['unitPrice'] = item['unitPrice'] - 1;
     this.itemsInCart.push(item);
     // this.cartItemsID.push(item['id']);
     this.cartItemsID.push(item['id']);

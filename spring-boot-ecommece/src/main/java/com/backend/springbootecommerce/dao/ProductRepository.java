@@ -76,12 +76,30 @@ public class ProductRepository implements ProductDao {
 
 
 	@Override
-	public Product getProductDetails(int id) {
+	public Product getProductDetails(long id) {
 		// TODO Auto-generated method stub
 //		System.out.println(id);
 		Product query = entityManager.find(Product.class, (long)id);
 //		System.out.println(query);
 		return query;
+	}
+
+
+	@Override
+	public boolean updateProductDetails(List<Product> products) {
+		// TODO Auto-generated method stub
+		for(int i =0;i<products.size();i++) {
+			int updateUnitStock = products.get(i).getUnitsInStock();
+//			Query query = entityManager.createQuery("update Product set units_in_stock = "+ quantity +" where sku = "+products.get(i).getSku());
+			
+			Product product = this.getProductDetails(products.get(i).getId());
+			
+			product.setUnitsInStock(updateUnitStock);
+//			List<Product> products1 = query.getResultList();
+			System.out.println(product);
+			
+		}
+		return false;
 	}
 
 }

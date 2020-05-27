@@ -53,9 +53,18 @@ public class ProductServiceImp implements ProductService {
 
 
 	@Override
-	public Product getProductDetails(int id) {
+	public Product getProductDetails(long id) {
 		// TODO Auto-generated method stub
 		return productDao.getProductDetails(id);
+	}
+
+
+
+	@Override
+	@Transactional
+	public boolean updateProductDetails(List<Product> products) {
+		// TODO Auto-generated method stub
+		return productDao.updateProductDetails(products);
 	}
 
 

@@ -63,7 +63,12 @@ export class ProductService {
   updateProduct() {
     console.log("Product services update product")
     var products = this.shoppingCart.getItemsFromCart();
-    console.log(`${this.baseUrl}/update`);
+    // console.log(products);
+
+    for(let i =0;i<products.length;i++){
+      products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity']; 
+      console.log(products[i]);
+    }
       return this._http.post(`${this.baseUrl}/update`,products).subscribe();
   }
 
