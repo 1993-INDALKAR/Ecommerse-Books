@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.springbootecommece.entity.Order;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.Product1;
+import com.backend.springbootecommerce.service.OrderService;
+import com.backend.springbootecommerce.service.OrderServiceImp;
 import com.backend.springbootecommerce.service.ProductService;
 
 @RestController
@@ -22,10 +25,12 @@ import com.backend.springbootecommerce.service.ProductService;
 public class ProductRestController {
 	
 	private ProductService productServie;
+	private OrderService orderService;
 		
 	@Autowired
-	public ProductRestController(ProductService productServie) {
+	public ProductRestController(ProductService productServie,OrderService orderService) {
 		this.productServie = productServie;
+		this.orderService = orderService;
 	}
 	
 	@GetMapping("/products/search/{prodName}")
@@ -50,18 +55,21 @@ public class ProductRestController {
 		return this.productServie.getProductDetails(id);
 	}
 	
-	@PostMapping("/products/update")
+	@PostMapping("/products/update/{email}/{quantity}")
 	@CrossOrigin("http://localhost:4200")
-	public boolean updateProducts(@RequestBody List<Product> products) {
+	public boolean updateProducts(@RequestBody List<Product> products,@PathVariable String email,@PathVariable int quantity){
 		System.out.println("update products");
-//		System.out.println(products.get(0).getQuantity());
-//		List<Integer> quantity = new ArrayList<>();
-//		 
-//		for(int i =0;i<products.size();i++) {
-//			quantity.add(products.get(i).getQuantity());
-//		}
-//		int quantity = products.get(0).getQuantity();
-		return this.productServie.updateProductDetails(products);
+		System.out.println(email);
+		System.out.println(quantity);
+		return this.productServie.updateProductDetails(products,email,quantity);
+//		return false;
+	}
+	
+	@GetMapping("/products/order")
+	@CrossOrigin("http://localhost:4200")
+	public List<Order> getOrders(){
+		System.out.println("order");
+		return this.orderService.getOrder(); 
 	}
 	
 	

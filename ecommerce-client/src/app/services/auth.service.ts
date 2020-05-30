@@ -12,7 +12,8 @@ import { of } from 'rxjs';
 })
 export class AuthService {
 
-  public user: Object = {}
+  public user: Object = {
+  }
 
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service

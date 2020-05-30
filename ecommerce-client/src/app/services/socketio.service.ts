@@ -72,7 +72,7 @@ export class SocketioService {
 
       .subscribe(e => {
         // console.log("from event");
-        // console.log(e);
+        console.log(e);
         this.clickEvent = {
           "id": e.target['id']
           // "id" : e.target['id']

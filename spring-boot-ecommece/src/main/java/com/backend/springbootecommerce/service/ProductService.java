@@ -2,6 +2,7 @@ package com.backend.springbootecommerce.service;
 
 import java.util.List;
 
+import com.backend.springbootecommece.entity.Order;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.ProductCategory;
 
@@ -14,6 +15,8 @@ public interface ProductService {
 	
 	public Product getProductDetails(long id);
 	
-	public boolean updateProductDetails(List<Product> products);
+	public boolean updateProductDetails(List<Product> products,String email, int quantity);
+	
+	public List<Order> getOrder();
 
 }

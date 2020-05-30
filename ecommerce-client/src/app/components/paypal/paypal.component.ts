@@ -61,11 +61,12 @@ export class PaypalComponent implements OnInit {
 
         this._zone.run(async () => {
           // var updated = this.updateProduct();
-          var updated = await this.productService.updateProduct();
-          if (updated) {
+          // var updated = await this.productService.updateProduct();
+          await this.productService.updateProduct();
+          // if (updated) {
             this.shoppingCart.clearShoppingCart();
             this.router.navigate(['/orders']);
-          }
+          // }
         });
         // console.log(token);
 

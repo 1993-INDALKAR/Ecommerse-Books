@@ -18,8 +18,12 @@
 
   <app-signin></app-signin>
 
-    <div class="divCart mr-3"  [matBadge]="items" matBadgePosition="after" (click)="routeToCart()">
-      <fa-icon [icon]="faCartPlus" id="cart-id" transform="grow-20"></fa-icon>
+
+    <div class="divCart mr-3"  id="cart-id-div" [matBadge]="items" matBadgePosition="after" (click)="routeToCart()">
+      <button class="btn btn-primary" id="cart-id-btn">
+        <fa-icon [icon]="faCartPlus" id="cart-id" transform="grow-20"></fa-icon>
+      </button>
+      
     </div>
     
 </nav>

@@ -37,6 +37,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase/app';
 import { AvatarModule } from 'ngx-avatar';
+import { OrderShipmentComponent } from './components/order-shipment/order-shipment.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -52,7 +53,8 @@ firebase.initializeApp(environment.firebaseConfig);
     ShoppingCartComponent,
     PaypalComponent,
     BottomSheetOverviewExampleSheet,
-    SigninComponent
+    SigninComponent,
+    OrderShipmentComponent
   ],
   imports: [
     BrowserModule,

@@ -44,6 +44,9 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+
+		
 		<!-- https://mvnrepository.com/artifact/com.paypal.sdk/paypal-core -->
 <dependency>
     <groupId>com.paypal.sdk</groupId>

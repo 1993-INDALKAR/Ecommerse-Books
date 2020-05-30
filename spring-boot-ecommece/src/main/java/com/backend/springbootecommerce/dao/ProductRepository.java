@@ -1,7 +1,11 @@
 package com.backend.springbootecommerce.dao;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.backend.springbootecommece.entity.Order;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.Product1;
 
@@ -86,20 +91,67 @@ public class ProductRepository implements ProductDao {
 
 
 	@Override
-	public boolean updateProductDetails(List<Product> products) {
+	public boolean updateProductDetails(List<Product> products,String email, int quantity) {
 		// TODO Auto-generated method stub
-		for(int i =0;i<products.size();i++) {
-			int updateUnitStock = products.get(i).getUnitsInStock();
-//			Query query = entityManager.createQuery("update Product set units_in_stock = "+ quantity +" where sku = "+products.get(i).getSku());
+		
+		try {
 			
-			Product product = this.getProductDetails(products.get(i).getId());
+			String productIds = "";
+			for(int i =0;i<products.size();i++) {
+				
+				int updateUnitStock = products.get(i).getUnitsInStock();	
+				Product product = this.getProductDetails(products.get(i).getId());
+				
+				System.out.println(product.getId());
+				
+				if(i==products.size()-1){
+					productIds += product.getId().toString();
+				}
+				else {
+					productIds += product.getId().toString()+",";
+				}
+				
+				product.setUnitsInStock(updateUnitStock);
+				
+				
+			}
 			
-			product.setUnitsInStock(updateUnitStock);
-//			List<Product> products1 = query.getResultList();
-			System.out.println(product);
+
+			
+			String timeStamp = LocalDateTime.now()
+				       .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+			System.out.println(timeStamp);
+			
+			entityManager.createNativeQuery("INSERT INTO `order` ( email, quantity, delivered, product_ids,date_created)"
+					+ " VALUES ( :eml, :quan, :del, :prodid, :date )")
+	                .setParameter("eml", email)
+	                .setParameter("quan", quantity)
+	                .setParameter("del", false)
+	                .setParameter("prodid", productIds)
+	                .setParameter("date", timeStamp)
+	                .executeUpdate();
 			
 		}
-		return false;
+		catch(Exception e) {
+			return false;
+		}
+		
+				
+		
+		return true;
+	}
+
+
+	@Override
+	public List<Order> getOrder() {
+		// TODO Auto-generated method stub
+		Query query = entityManager.createNativeQuery("Select * from `full-stack-ecommerce` .`order`");
+//		Query query = entityManager.createQuery("from Order"); 
+		System.out.println(query);
+		List<Order> orders = query.getResultList();
+		System.out.println(orders.toString());
+		
+		return orders;
 	}
 
 }

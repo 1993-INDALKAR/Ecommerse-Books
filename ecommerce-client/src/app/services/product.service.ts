@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
 import { ShoppingCartService } from "./shopping-cart.service";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class ProductService {
   searchProduct: Object = {};
 
 
-  constructor(private _http: HttpClient, private shoppingCart: ShoppingCartService) { }
+  constructor(private _http: HttpClient, private shoppingCart: ShoppingCartService,
+    private user: AuthService) { }
 
   getProductList() {
 
@@ -60,16 +62,35 @@ export class ProductService {
   }
 
 
-  updateProduct() {
+  async updateProduct() {
     console.log("Product services update product")
     var products = this.shoppingCart.getItemsFromCart();
-    // console.log(products);
+    var user = {};
+    await this.user.getUser().subscribe((user) => {
+      user = user;
+      var quantity = 0;
+      // console.log(products);
 
-    for(let i =0;i<products.length;i++){
-      products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity']; 
-      console.log(products[i]);
-    }
-      return this._http.post(`${this.baseUrl}/update`,products).subscribe();
+      for (let i = 0; i < products.length; i++) {
+        products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity'];
+        quantity += products[i]['quantity'];
+        console.log(products[i]);
+      }
+      return this._http.post(`${this.baseUrl}/update/${user['email']}/${quantity}`, products).subscribe();
+    });;
+    // var quantity = 0;
+    // // console.log(products);
+
+    // for (let i = 0; i < products.length; i++) {
+    //   products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity'];
+    //   quantity += products[i]['quantity'];
+    //   console.log(products[i]);
+    // }
+    // return this._http.get(`${this.baseUrl}/${user['email']}/${quantity}`, products).subscribe();
+  }
+
+  getOrderList():Observable<Object> {
+    return this._http.get(`${this.baseUrl}/order`);
   }
 
 

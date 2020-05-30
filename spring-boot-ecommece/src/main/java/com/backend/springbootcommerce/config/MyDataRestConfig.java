@@ -5,6 +5,7 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 
+import com.backend.springbootecommece.entity.Order;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.ProductCategory;
 
@@ -17,6 +18,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		
 		
 		HttpMethod[] theUnsupportedAction = {HttpMethod.PUT,HttpMethod.POST,HttpMethod.DELETE};
+		HttpMethod[] theUnsupportedAction1 = {HttpMethod.PUT,HttpMethod.DELETE};
 		
 		config.getExposureConfiguration().forDomainType(Product.class)
 		.withItemExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction))
@@ -25,6 +27,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		config.getExposureConfiguration().forDomainType(ProductCategory.class)
 		.withItemExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction))
 		.withCollectionExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction));
+		
+		config.getExposureConfiguration().forDomainType(Order.class)
+		.withItemExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction1))
+		.withCollectionExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction1));
 		
 		
 		
