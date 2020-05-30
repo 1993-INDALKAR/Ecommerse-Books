@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.ProductCategory;
 import com.backend.springbootecommerce.dao.ProductRepository;
@@ -72,7 +72,7 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	@Transactional
-	public List<Order> getOrder() {
+	public List<Orders> getOrder() {
 		// TODO Auto-generated method stub
 		return this.productDao.getOrder();
 	}

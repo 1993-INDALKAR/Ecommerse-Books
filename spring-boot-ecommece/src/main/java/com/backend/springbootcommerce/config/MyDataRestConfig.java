@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.ProductCategory;
 
@@ -28,7 +28,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		.withItemExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction))
 		.withCollectionExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction));
 		
-		config.getExposureConfiguration().forDomainType(Order.class)
+		config.getExposureConfiguration().forDomainType(Orders.class)
 		.withItemExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction1))
 		.withCollectionExposure((metdata,httpMethod) -> httpMethod.disable(theUnsupportedAction1));
 		

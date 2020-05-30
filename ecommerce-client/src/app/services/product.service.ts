@@ -89,9 +89,54 @@ export class ProductService {
     // return this._http.get(`${this.baseUrl}/${user['email']}/${quantity}`, products).subscribe();
   }
 
-  getOrderList():Observable<Object> {
-    return this._http.get(`${this.baseUrl}/order`);
+   getOrderList():Observable<Object> {
+  // async getOrderList(){
+
+    var userDetail;
+    // this.user.getUserDetail();
+     let userOrders =  this.user.getUser().subscribe((user) => {
+       console.log(user);
+       userDetail = user;
+      // let orders = this._http.get(`${this.baseUrl}/order/`+user['email']);
+      // console.log(orders);
+      // return orders;
+    });
+
+    let productDetails = this._http.get<Object[]>(`${this.baseUrl}/order/`+userDetail['email']);
+
+    // productDetails = this.getOrderProducts(productDetails);
+
+    // return productDetails;
+
+    return this._http.get(`${this.baseUrl}/order/`+userDetail['email']);
+
+    // return this._http.get(`${this.baseUrl}/order`);
   }
+
+
+  async getOrderProducts(productDetails:any){
+    // console.log(productDetails);
+    // for(let user of productDetails){
+      // let productId = user['product'].split(",");
+      let productId = productDetails.split(",");
+      let productArr = [];
+      for(let id in productId){
+        this.getProductDetail(Number(productId[id])).subscribe(data => {
+          // console.log(data);
+          let product = JSON.parse(data);
+          productArr.push(product);       
+        },()=>{console.log(productArr)});
+        // let product = await this.getProductDetail(Number(id));
+        // productArr.push(product);
+      }
+      // user['product'] = productArr;
+    // }
+
+    // console.log(productArr);
+    // return productArr;
+
+  }
+
 
 
 

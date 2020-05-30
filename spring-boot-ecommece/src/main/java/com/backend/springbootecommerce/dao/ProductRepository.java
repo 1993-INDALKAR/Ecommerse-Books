@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.Product1;
 
@@ -111,7 +111,7 @@ public class ProductRepository implements ProductDao {
 					productIds += product.getId().toString()+",";
 				}
 				
-				product.setUnitsInStock(updateUnitStock);
+//				product.setUnitsInStock(updateUnitStock);
 				
 				
 			}
@@ -122,7 +122,7 @@ public class ProductRepository implements ProductDao {
 				       .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
 			System.out.println(timeStamp);
 			
-			entityManager.createNativeQuery("INSERT INTO `order` ( email, quantity, delivered, product_ids,date_created)"
+			entityManager.createNativeQuery("INSERT INTO `orders` ( email, quantity, delivered, product_ids,date_created)"
 					+ " VALUES ( :eml, :quan, :del, :prodid, :date )")
 	                .setParameter("eml", email)
 	                .setParameter("quan", quantity)
@@ -143,15 +143,16 @@ public class ProductRepository implements ProductDao {
 
 
 	@Override
-	public List<Order> getOrder() {
-		// TODO Auto-generated method stub
-		Query query = entityManager.createNativeQuery("Select * from `full-stack-ecommerce` .`order`");
-//		Query query = entityManager.createQuery("from Order"); 
+	public List<Orders> getOrder() {
+//		// TODO Auto-generated method stub
+		System.out.println("Hello");
+		Query query = entityManager.createNativeQuery("Select id,email,quantity,delivered,product_ids from `orders`");
+////		Query query = entityManager.createQuery("from Order"); 
 		System.out.println(query);
-		List<Order> orders = query.getResultList();
+		List<Orders> orders = query.getResultList();
 		System.out.println(orders.toString());
 		
-		return orders;
+		return null;
 	}
 
 }

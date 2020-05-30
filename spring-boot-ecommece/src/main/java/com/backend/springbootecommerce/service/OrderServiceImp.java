@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 import com.backend.springbootecommerce.dao.OrderRepository;
 import com.backend.springbootecommerce.dao.ProductRepository;
 
@@ -26,10 +26,10 @@ private OrderRepository orderDao;
 
 	@Override
 	@Transactional
-	public List<Order> getOrder() {
+	public List<Orders> getOrder(String email) {
 		// TODO Auto-generated method stub
 		System.out.println("order imp");
-		return this.orderDao.getOrder();
+		return this.orderDao.getOrder(email);
 	}
 
 }

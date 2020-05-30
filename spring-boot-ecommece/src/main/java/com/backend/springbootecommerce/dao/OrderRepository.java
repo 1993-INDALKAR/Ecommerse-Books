@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 
 
 @Repository
@@ -24,14 +24,16 @@ private EntityManager entityManager;
 	}
 
 	@Override
-	public List<Order> getOrder() {
+	public List<Orders> getOrder(String email) {
 		
 		System.out.println("sfvsf");
 //		Query query = entityManager.createNativeQuery("Select * from `full-stack-ecommerce` .`order`");
+//		Query query = entityManager.createNativeQuery("Select id,email,quantity,delivered,product_ids from `orders`");
 //		Query query = entityManager.createQuery("from orders",Order.class); 
-		Query query = entityManager.createQuery("from Orders"); 
-		System.out.println(query);
-		List<Order> orders = query.getResultList();
+		Query query = entityManager.createQuery("from Orders where email = :eml and delivered = "+false);
+		query.setParameter("eml", email);
+//		System.out.println(query);
+		List<Orders> orders = query.getResultList();
 		System.out.println(orders.toString());
 		
 		return orders;

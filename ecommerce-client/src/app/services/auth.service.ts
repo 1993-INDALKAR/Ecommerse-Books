@@ -45,6 +45,10 @@ export class AuthService {
     return of(this.user);
   }
 
+  getUserDetail(){
+    return this.user;
+  }
+
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)

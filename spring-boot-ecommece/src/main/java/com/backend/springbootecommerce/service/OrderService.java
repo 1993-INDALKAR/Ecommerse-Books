@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 
 
 public interface OrderService {
 	
-	public List<Order> getOrder();
+	public List<Orders> getOrder(String email);
 
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.springbootecommece.entity.Order;
+import com.backend.springbootecommece.entity.Orders;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.Product1;
 import com.backend.springbootecommerce.service.OrderService;
@@ -65,11 +65,11 @@ public class ProductRestController {
 //		return false;
 	}
 	
-	@GetMapping("/products/order")
+	@GetMapping("/products/order/{email}")
 	@CrossOrigin("http://localhost:4200")
-	public List<Order> getOrders(){
+	public List<Orders> getOrders(@PathVariable String email){
 		System.out.println("order");
-		return this.orderService.getOrder(); 
+		return this.orderService.getOrder(email); 
 	}
 	
 	
