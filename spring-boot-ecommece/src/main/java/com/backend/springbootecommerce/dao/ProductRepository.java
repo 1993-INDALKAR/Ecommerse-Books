@@ -116,7 +116,7 @@ public class ProductRepository implements ProductDao {
 					productQuantities += ""+products.get(i).getUnitsInStock()+",";
 				}
 				
-//				product.setUnitsInStock(updateUnitStock);
+				product.setUnitsInStock(updateUnitStock);
 				
 				
 			}

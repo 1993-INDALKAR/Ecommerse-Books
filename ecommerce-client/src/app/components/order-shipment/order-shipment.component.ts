@@ -17,21 +17,24 @@ export class OrderShipmentComponent implements OnInit {
 
 
 
-    this.orders = this.orderService.getOrderList()
-    // console.log(this.orders);
-    .subscribe(async (order)=>{
-      this.orders = order
+    // this.orders = this.orderService.getOrderList()
+    // .subscribe(async (order)=>{
+    //   this.orders = order
+    //   console.log(this.orders);
+    //   for(let order of this.orders){
+    //     let products =  await this.orderService.getOrderProducts(order['product']);
+    //     console.log(products);
+    //   }
+
+    // });
+
+    this.orderService.getAllOrderList().subscribe(order=>{
+      this.orders = order;
       console.log(this.orders);
-      for(let order of this.orders){
-        let products =  await this.orderService.getOrderProducts(order['product']);
-        console.log(products);
-      }
-      
-      // console.log(updateOrder);
     });
 
     // this.orders =  this.orderService.getOrderProducts(this.orders);
-    // console.log(this.orders);
+    
     
   }
 

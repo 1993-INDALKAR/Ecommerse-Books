@@ -130,6 +130,18 @@ export class ProductService {
 
   }
 
+  getAllOrderList(){
+
+    var userDetail;
+     let userOrders =  this.user.getUser().subscribe((user) => {
+       userDetail = user;
+    });
+
+
+    return this._http.get(`${this.baseUrl}/order/`+userDetail['email']);
+
+  }
+
 
 
 
