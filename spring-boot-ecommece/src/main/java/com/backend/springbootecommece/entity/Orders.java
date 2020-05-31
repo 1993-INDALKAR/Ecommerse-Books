@@ -34,12 +34,23 @@ public class Orders {
 //	@JoinColumn(name="product_id",nullable=false)
 	@Column(name="product_ids")
 	private String product;
+	
+	@Column(name="prod_quantity")
+	private String prodQuan;
 
 	@Column(name="date_created")
 	@CreationTimestamp
 	private Date dateCreated;
 	
 	
+	public String getProdQuan() {
+		return prodQuan;
+	}
+
+	public void setProdQuan(String prodQuan) {
+		this.prodQuan = prodQuan;
+	}
+
 	public Date getDateCreated() {
 		return dateCreated;
 	}

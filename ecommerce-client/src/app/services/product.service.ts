@@ -72,21 +72,14 @@ export class ProductService {
       // console.log(products);
 
       for (let i = 0; i < products.length; i++) {
-        products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity'];
+        // products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity'];
+        products[i]['unitsInStock'] = products[i]['quantity'];
         quantity += products[i]['quantity'];
         console.log(products[i]);
       }
       return this._http.post(`${this.baseUrl}/update/${user['email']}/${quantity}`, products).subscribe();
     });;
-    // var quantity = 0;
-    // // console.log(products);
 
-    // for (let i = 0; i < products.length; i++) {
-    //   products[i]['unitsInStock'] = products[i]['unitsInStock'] - products[i]['quantity'];
-    //   quantity += products[i]['quantity'];
-    //   console.log(products[i]);
-    // }
-    // return this._http.get(`${this.baseUrl}/${user['email']}/${quantity}`, products).subscribe();
   }
 
    getOrderList():Observable<Object> {

@@ -97,18 +97,23 @@ public class ProductRepository implements ProductDao {
 		try {
 			
 			String productIds = "";
+			String productQuantities = "";
 			for(int i =0;i<products.size();i++) {
 				
-				int updateUnitStock = products.get(i).getUnitsInStock();	
+				
+					
 				Product product = this.getProductDetails(products.get(i).getId());
+				int updateUnitStock = product.getUnitsInStock()-products.get(i).getUnitsInStock();
 				
 				System.out.println(product.getId());
 				
 				if(i==products.size()-1){
 					productIds += product.getId().toString();
+					productQuantities += ""+products.get(i).getUnitsInStock();
 				}
 				else {
 					productIds += product.getId().toString()+",";
+					productQuantities += ""+products.get(i).getUnitsInStock()+",";
 				}
 				
 //				product.setUnitsInStock(updateUnitStock);
@@ -117,18 +122,19 @@ public class ProductRepository implements ProductDao {
 			}
 			
 
-			
+			      
 			String timeStamp = LocalDateTime.now()
 				       .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
 			System.out.println(timeStamp);
 			
-			entityManager.createNativeQuery("INSERT INTO `orders` ( email, quantity, delivered, product_ids,date_created)"
-					+ " VALUES ( :eml, :quan, :del, :prodid, :date )")
+			entityManager.createNativeQuery("INSERT INTO `orders` ( email, quantity, delivered, product_ids,date_created,prod_quantity)"
+					+ " VALUES ( :eml, :quan, :del, :prodid, :date, :perodQuan )")
 	                .setParameter("eml", email)
 	                .setParameter("quan", quantity)
 	                .setParameter("del", false)
 	                .setParameter("prodid", productIds)
 	                .setParameter("date", timeStamp)
+	                .setParameter("perodQuan", productQuantities)
 	                .executeUpdate();
 			
 		}
@@ -146,7 +152,7 @@ public class ProductRepository implements ProductDao {
 	public List<Orders> getOrder() {
 //		// TODO Auto-generated method stub
 		System.out.println("Hello");
-		Query query = entityManager.createNativeQuery("Select id,email,quantity,delivered,product_ids from `orders`");
+		Query query = entityManager.createNativeQuery("Select id,email,quantity,delivered,product_ids,prod_quantity from `orders`");
 ////		Query query = entityManager.createQuery("from Order"); 
 		System.out.println(query);
 		List<Orders> orders = query.getResultList();

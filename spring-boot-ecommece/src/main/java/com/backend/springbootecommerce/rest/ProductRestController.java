@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.springbootecommece.entity.Orders;
+import com.backend.springbootecommece.entity.Orders1;
 import com.backend.springbootecommece.entity.Product;
 import com.backend.springbootecommece.entity.Product1;
 import com.backend.springbootecommerce.service.OrderService;
@@ -67,7 +68,7 @@ public class ProductRestController {
 	
 	@GetMapping("/products/order/{email}")
 	@CrossOrigin("http://localhost:4200")
-	public List<Orders> getOrders(@PathVariable String email){
+	public List<Orders1> getOrders(@PathVariable String email){
 		System.out.println("order");
 		return this.orderService.getOrder(email); 
 	}
